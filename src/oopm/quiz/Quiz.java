@@ -1,12 +1,13 @@
 package oopm.quiz;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Quiz {
     final static int MAX = 100;
     static Scanner scanner = new Scanner(System.in);
-    private LeichteFrage[] leichteFragen = new LeichteFrage[MAX];
-    int anzahlFragen = 0;
+    private List<Question> fragen = new ArrayList<>();
 
     public static void main(String[] args) {
         Quiz quiz = new Quiz();
@@ -31,25 +32,21 @@ public class Quiz {
                 5
         );
 
-       addEasyQuestion(q1);
-       addEasyQuestion(q2);
-    }
-
-    private void addEasyQuestion(LeichteFrage frage) {
-        leichteFragen[anzahlFragen++] = frage;
+       fragen.add(q1);
+       fragen.add(q2);
     }
 
     public void start() {
         int punkte = 0;
-        for (int i = 0; i < anzahlFragen; i++) {
+        for (int i = 0; i < fragen.size(); i++) {
             System.out.print("Frage Nr. " + (i+1) + ": ");
-            System.out.println(leichteFragen[i].getText());
+            System.out.println(fragen.get(i).getText());
             System.out.print("Ihre Antwort: ");
             String antwort = scanner.nextLine();
-            boolean correct = leichteFragen[i].verify(antwort);
+            boolean correct = fragen.get(i).verify(antwort);
             if (correct) {
                 System.out.println("Antwort ist richtig!");
-                punkte += leichteFragen[i].getPoints();
+                punkte += fragen.get(i).getPoints();
             } else {
                 System.out.println("Antwort ist falsch!");
             }
