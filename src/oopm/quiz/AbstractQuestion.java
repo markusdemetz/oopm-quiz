@@ -1,3 +1,5 @@
+package oopm.quiz;
+
 public abstract class AbstractQuestion implements Question {
 
     private String text;

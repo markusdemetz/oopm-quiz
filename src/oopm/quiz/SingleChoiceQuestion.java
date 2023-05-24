@@ -1,4 +1,6 @@
-public class SingleChoiceQuestion extends AbstractQuestion 
+package oopm.quiz;
+
+public class SingleChoiceQuestion extends AbstractQuestion
     implements SchwereFrage {
 
     public SingleChoiceQuestion(String text, int points) {

@@ -1,3 +1,5 @@
+package oopm.quiz;
+
 public class GapQuestion extends AbstractQuestion
         implements LeichteFrage {
 

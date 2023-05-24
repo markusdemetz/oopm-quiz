@@ -1,3 +1,5 @@
+package oopm.quiz;
+
 public interface Question {
 
     String getText();

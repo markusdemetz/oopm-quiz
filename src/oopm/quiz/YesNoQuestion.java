@@ -1,3 +1,5 @@
+package oopm.quiz;
+
 public class YesNoQuestion extends AbstractQuestion
         implements LeichteFrage {
 
