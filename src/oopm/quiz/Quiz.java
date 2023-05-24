@@ -19,22 +19,29 @@ public class Quiz {
 
     public void initQuestions() {
         YesNoQuestion q1 = new YesNoQuestion(
+
                 "Z Die Erde ist eine Scheibe (1 Pkt.)",
+
                 1,
                 false
         );
         GapQuestion q2 = new GapQuestion(
+
                 "A Objekte sind _________ einer Klasse. (10 Pkt.)",
+
                 10,
                 "Instanzen"
         );
         SingleChoiceQuestion q3 = new SingleChoiceQuestion(
+
                 "X Wieviele Grundfarben gibt es? (5. Pkt.)",
+
                 5
         );
 
        fragen.add(q1);
        fragen.add(q2);
+
        fragen.add(q3);
     }
 
