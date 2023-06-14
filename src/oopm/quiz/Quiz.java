@@ -1,5 +1,6 @@
 package oopm.quiz;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
@@ -39,10 +40,9 @@ public class Quiz {
                 5
         );
 
-       fragen.add(q1);
-       fragen.add(q2);
-
-       fragen.add(q3);
+        fragen.add(q1);
+        fragen.add(q2);
+        fragen.add(q3);
     }
 
     public void start() {
@@ -50,10 +50,18 @@ public class Quiz {
         fragen.sort(comparator);
         int punkte = 0;
         for (int i = 0; i < fragen.size(); i++) {
-            System.out.print("Frage Nr. " + (i+1) + ": ");
+            System.out.print("Frage Nr. " + (i + 1) + ": ");
             System.out.println(fragen.get(i).getText());
             System.out.print("Ihre Antwort: ");
-            String antwort = scanner.nextLine();
+            String antwort;
+            try {
+                antwort = eingabe();
+            } catch(IOException ioe) {
+                System.err.println("Fehler!");
+                throw new RuntimeException("Keine Eingabe vorhanden", ioe);
+            } finally {
+                System.out.println("Finally Block ausgeführt!");
+            }
             boolean correct = fragen.get(i).verify(antwort);
             if (correct) {
                 System.out.println("Antwort ist richtig!");
@@ -63,6 +71,14 @@ public class Quiz {
             }
         }
         System.out.println("Anzahl Punkte: " + punkte);
+    }
+
+    private static String eingabe() throws IOException{
+        String eingabe = scanner.nextLine();
+        if (eingabe.isBlank()) {
+            throw new IOException("Fehlende Eingabe");
+        }
+        return eingabe;
     }
 
 }
