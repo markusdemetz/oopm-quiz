@@ -1,5 +1,5 @@
 package oopm.quiz;
-
+import java.lang.System;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -20,26 +20,25 @@ public class Quiz {
 
     public void initQuestions() {
         YesNoQuestion q1 = new YesNoQuestion(
-
                 "Z Die Erde ist eine Scheibe (1 Pkt.)",
-
                 1,
                 false
         );
         GapQuestion q2 = new GapQuestion(
-
                 "A Objekte sind _________ einer Klasse. (10 Pkt.)",
-
                 10,
                 "Instanzen"
         );
         SingleChoiceQuestion q3 = new SingleChoiceQuestion(
-
                 "X Wieviele Grundfarben gibt es? (5. Pkt.)",
-
-                5
+                5,
+                List.of(
+                        new Choice("Es gibt 2 Grundfarben", false),
+                        new Choice("Es gibt 4 Grundfarben", false),
+                        new Choice("Es gibt 3 Grundfarben", true),
+                        new Choice("Es gibt 6 Grundfarben", false)
+                )
         );
-
         fragen.add(q1);
         fragen.add(q2);
         fragen.add(q3);
