@@ -1,4 +1,5 @@
 package oopm.quiz;
+import java.io.FileWriter;
 import java.lang.System;
 import java.io.IOException;
 import java.util.Iterator;
@@ -12,9 +13,19 @@ public class Quiz {
     private List<Question> fragen = new ArrayList<>();
 
     public static void main(String[] args) {
+        boolean playMode = true;
+        if (args.length > 0) {
+          if (args[0].equalsIgnoreCase("file")) {
+            playMode = false;
+          }
+        }
         Quiz quiz = new Quiz();
         quiz.initQuestions();
-        quiz.start();
+        if (playMode) {
+            quiz.start();
+        } else {
+            quiz.writeQuestionsToFile("fragen.txt");
+        }
         scanner.close();
     }
 
@@ -78,6 +89,20 @@ public class Quiz {
             throw new IOException("Fehlende Eingabe");
         }
         return eingabe;
+    }
+
+    private void writeQuestionsToFile(String fileName) {
+
+        try (FileWriter fw = new FileWriter(fileName)) {
+            // Über Fragen iterieren und mit FileWriter schreiben.
+            fw.write("Quiz Fragen\n");
+            for (int i = 0; i < fragen.size(); i++) {
+                fw.write(fragen.get(i).getText() + "\n");
+            }
+            System.out.println("Fragen wurden gespeichert!");
+        } catch(IOException e) {
+            System.err.println("Fehler beim Schreiben der Datei!");
+        }
     }
 
 }
